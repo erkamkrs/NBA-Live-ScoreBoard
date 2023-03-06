@@ -1,0 +1,54 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+
+{{ super() }}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+
+{% block title %}NBA LIVE SCORE{% endblock %}
+
+
+{% block content %}
+
+<div class="jumbotron text-center" style="background-image: url('static/images/court.jpg');">
+  <div class="container">
+  <h1 class="display-4">NBA LIVE SCORE</h1>
+  <p class="lead">LIVE SCORES {{ todays_date }}.</p>
+  <hr class="my-4">
+  <p>LIVE SCORES FROM TODAY'S NBA GAMES</p>
+  <p class="lead">
+    <a class="btn btn-success btn-lg" href="" role="button">Show me!</a>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Home Team</th>
+      <th scope="col">Score</th>
+      <th scope="col">Away Team</th>
+      <th scope="col">Game Clock</th>
+
+    </tr>
+  </thead>
+  <tbody>
+        {% for games in todays_games %}
+    <tr>
+      <td>{{ games["homeTeam"]["teamName"] }}</td>
+      <td>{{ games["homeTeam"]["score"] }} v {{ games["awayTeam"]["score"] }}</td>
+      <td>{{ games["awayTeam"]["teamName"] }}</td>
+        {% if games["gameStatusText"] == "Final": %}
+      <td>Final</td>
+        {% elif games["period"] >= 4: %}
+      <td>{{ overtime }} {{ games["gameClock"] }}</td>
+        {% else %}
+      <td>{{ games["period"] }} {{ quarter }} {{ games["gameClock"] }}</td>
+        {% endif %}
+
+    </tr>
+                   {% endfor %}
+  </tbody>
+  </table>
+  </div>
+</div>
+
+{% endblock %}
