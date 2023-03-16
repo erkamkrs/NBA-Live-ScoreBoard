@@ -50,10 +50,7 @@ $ pip install -r requirements.txt
 
 * Run the app in the development mode.
 * Open http://localhost:5000 to view it in the browser. 
-* Go to Navbar to register or login
-* See the posts by going to top left corner and click on "Erkam's Blog" or click on "Home" on navbar.
-* To see more about the post click on the title while on the "Home" page.
-* Logout by clickig on "Logout" on navbar
+
 
 
 ## Help
